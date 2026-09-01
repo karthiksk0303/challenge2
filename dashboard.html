@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SecureVault | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card dashboard">
+
+            <!-- Top navigation -->
+            <div class="topbar">
+                <span class="badge">SECUREVAULT</span>
+
+                <a href="/logout">Logout</a>
+            </div>
+
+
+            <!-- Welcome section -->
+            <h1>Welcome, {{ username }}</h1>
+
+            <p class="subtitle">
+                Your private document portal
+            </p>
+
+
+            <!-- Account information -->
+            <div class="profile-box">
+
+                <span>Account</span>
+
+                <strong>{{ username }}</strong>
+
+            </div>
+
+
+            <!-- Document section -->
+            <div class="document-box">
+
+                <h2>📄 My Document</h2>
+
+                <p>
+                    Your private document is available through
+                    the SecureVault document service.
+                </p>
+
+
+                <button onclick="loadDocument()">
+                    View Document
+                </button>
+
+
+                <!-- API response appears here -->
+                <pre id="document"></pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        async function loadDocument() {
+
+            /*
+             * The browser requests the logged-in user's document.
+             *
+             * The object ID is intentionally NOT displayed
+             * anywhere in the visible dashboard.
+             */
+
+            const response = await fetch(
+                "/api/document/{{ user_id }}"
+            );
+
+
+            const data = await response.json();
+
+
+            /*
+             * Display the API response.
+             */
+
+            document.getElementById("document").textContent =
+                JSON.stringify(data, null, 2);
+
+        }
+
+    </script>
+
+</body>
+</html>
