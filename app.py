@@ -21,7 +21,7 @@ DOCUMENTS = {
     1002: {
         "owner": "employee",
         "title": "Employee Confidential File",
-        "content": "PSNACET{L0g1n_SuC33ss_An6_D0n3}"
+        "content": "ROOT@KNU11{L0g1n_SuC33ss_An6_D0n3}"
     }
 }
 
